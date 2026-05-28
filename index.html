@@ -6,10 +6,10 @@
     <title>資優民主國官方網站 - Gifted Democracy</title>
     <style>
         :root {
-            --primary: #00f3ff; /* 科技霓虹藍 */
-            --accent: #ff0055;  /* 警告霓虹紅 */
-            --bg-dark: #0a0c10; /* 深邃夜空黑 */
-            --card-bg: rgba(30, 41, 59, 0.45); /* 毛玻璃背景 */
+            --primary: #00f3ff; 
+            --accent: #ff0055;  
+            --bg-dark: #0a0c10; 
+            --card-bg: rgba(30, 41, 59, 0.45); 
             --text-main: #f1f5f9;
             --text-muted: #94a3b8;
         }
@@ -31,7 +31,6 @@
             background-attachment: fixed;
         }
 
-        /* 導覽列 */
         header {
             background: rgba(10, 12, 16, 0.8);
             backdrop-filter: blur(12px);
@@ -50,6 +49,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.2rem 2rem;
+            flex-wrap: wrap;
         }
 
         .brand {
@@ -64,6 +64,7 @@
         .nav-links {
             display: flex;
             list-style: none;
+            flex-wrap: wrap;
         }
 
         .nav-links li {
@@ -84,7 +85,6 @@
             text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
         }
 
-        /* 主視覺區 */
         .hero {
             height: 50vh;
             display: flex;
@@ -94,7 +94,6 @@
             text-align: center;
             padding: 0 1rem;
             margin-top: 80px;
-            position: relative;
         }
 
         .hero h1 {
@@ -115,7 +114,6 @@
             letter-spacing: 2px;
         }
 
-        /* 資訊主體 */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -145,7 +143,6 @@
             box-shadow: 0 0 10px var(--primary);
         }
 
-        /* 國家即時狀態面板 */
         .status-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -181,7 +178,6 @@
             text-shadow: 0 0 8px rgba(255, 0, 85, 0.4);
         }
 
-        /* 歷史大事紀時間軸 */
         .timeline {
             position: relative;
             border-left: 2px solid rgba(0, 243, 255, 0.2);
@@ -227,7 +223,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* 憲法條例毛玻璃外盒 */
         .law-box {
             background: var(--card-bg);
             border: 1px solid rgba(0, 243, 255, 0.15);
@@ -293,7 +288,36 @@
             color: var(--text-main);
         }
 
-        /* 頁尾 */
+        .report-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px dashed rgba(0, 243, 255, 0.2);
+        }
+
+        .btn-report {
+            background: linear-gradient(135deg, var(--accent), #b3003b);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .btn-report:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.7);
+        }
+
+        .btn-report:active {
+            transform: translateY(1px);
+        }
+
         footer {
             background-color: #06080c;
             text-align: center;
@@ -304,15 +328,18 @@
             letter-spacing: 1px;
         }
 
-        /* RWD 斷點優化 */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
                 gap: 1rem;
                 padding: 1.2rem 1rem;
+                justify-content: center;
+            }
+            .nav-links {
+                justify-content: center;
             }
             .nav-links li {
-                margin: 0 1.2rem;
+                margin: 0 0.8rem;
             }
             .hero h1 {
                 font-size: 2.4rem;
@@ -345,7 +372,6 @@
 
     <div class="container">
 
-        <!-- 國家即時數據面板 -->
         <div class="status-grid">
             <div class="status-card">
                 <div class="status-label">開國首任總統</div>
@@ -361,7 +387,6 @@
             </div>
         </div>
 
-        <!-- 歷史大事紀 -->
         <section id="history">
             <h2>建國歷史與大事紀</h2>
             <div class="timeline">
@@ -409,7 +434,6 @@
             </div>
         </section>
 
-        <!-- 憲法管制條例 -->
         <section id="constitution">
             <h2>中央最高法規</h2>
             
@@ -463,10 +487,14 @@
                         行為人雖有內卷事實，但若具備下列各款條件之一者，免予追究其法律責任：
                         <ul class="sub-list">
                             <li>一、持有主管機關核發之合格內卷證明文件者。</li>
-                            <li>二、經合法執業醫師開立內卷處方箋者。</li>
+                            <li>二、經合法執業醫師開立內卷處方箋者.</li>
                             <li>三、經專業鑑定，其智能商數（IQ）低於八十者。</li>
                         </ul>
                     </div>
+                </div>
+
+                <div class="report-section">
+                    <button class="btn-report" onclick="processReport()">進入全國內卷檢舉系統</button>
                 </div>
 
             </div>
@@ -478,5 +506,20 @@
         <p>&copy; 民國 115 年 資優民主國最高行政機關。請全體使用者自律，共同守護良性競爭環境。</p>
     </footer>
 
+    <script>
+        function processReport() {
+            const suspect = prompt("【資優民主國天網系統】\n請輸入被檢舉人姓名：");
+            if (!suspect) return;
+            
+            const evidence = prompt(`請輸入 ${suspect} 的具體內卷行為（例如：偷偷看書、背單字、說了「提升實力」）：`);
+            if (!evidence) return;
+            
+            if (evidence.includes("提升實力")) {
+                alert(`【立案成功】\n偵測到關鍵詞彙！被檢舉人與檢舉人口頭提及「提升實力」，違反本條例第六條。天網已自動將雙方各處執行十二小時外卷特殊輔導教育！`);
+            } else {
+                alert(`【系統分析中】...\n已被最高行政法院立案！正在調閱 ${suspect} 的學業操行表現。\n若表現傑出將依第二條「一級內卷罪」移送法辦。感謝使用者依法配合。`);
+            }
+        }
+    </script>
 </body>
 </html>
