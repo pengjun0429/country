@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資優民主國官方網站 - Gifted Democracy</title>
+    <style>
+        :root {
+            --primary: #00f3ff; /* 科技霓虹藍 */
+            --accent: #ff0055;  /* 警告霓虹紅 */
+            --bg-dark: #0a0c10; /* 深邃夜空黑 */
+            --card-bg: rgba(30, 41, 59, 0.45); /* 毛玻璃背景 */
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif, "Microsoft JhengHei";
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 85, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* 導覽列 */
+        header {
+            background: rgba(10, 12, 16, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .brand {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+        }
+
+        /* 主視覺區 */
+        .hero {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+            background: linear-gradient(45deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px rgba(0,243,255,0.3));
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            letter-spacing: 2px;
+        }
+
+        /* 資訊主體 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem 2rem;
+        }
+
+        section {
+            margin-bottom: 6rem;
+            scroll-margin-top: 100px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* 國家即時狀態面板 */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .status-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .status-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .status-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .status-value.alert {
+            color: var(--accent);
+            text-shadow: 0 0 8px rgba(255, 0, 85, 0.4);
+        }
+
+        /* 歷史大事紀時間軸 */
+        .timeline {
+            position: relative;
+            border-left: 2px solid rgba(0, 243, 255, 0.2);
+            padding-left: 2.5rem;
+            margin-left: 1rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: calc(-2.5rem - 7px);
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--bg-dark);
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 8px var(--primary);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 憲法條例毛玻璃外盒 */
+        .law-box {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .law-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .law-title h3 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        .law-title p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .law-article {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .law-article:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .article-num {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .article-text {
+            color: var(--text-main);
+            text-align: justify;
+            font-size: 1.05rem;
+        }
+
+        .sub-list {
+            list-style: none;
+            margin-top: 0.8rem;
+            padding-left: 1.5rem;
+        }
+
+        .sub-list li {
+            position: relative;
+            margin-bottom: 0.4rem;
+            color: var(--text-main);
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #06080c;
+            text-align: center;
+            padding: 2.5rem;
+            color: #55657e;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        /* RWD 斷點優化 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.2rem 1rem;
+            }
+            .nav-links li {
+                margin: 0 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .law-box {
+                padding: 1.5rem;
+            }
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="brand">資優民主國</a>
+            <ul class="nav-links">
+                <li><a href="#history">建國大事紀</a></li>
+                <li><a href="#constitution">中央法規</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>資優民主國</h1>
+        <p>國家最高學術與憲政核心公告系統</p>
+    </div>
+
+    <div class="container">
+
+        <!-- 國家即時數據面板 -->
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="status-label">開國首任總統</div>
+                <div class="status-value">蘇泳旭 (8票當選)</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">執政黨</div>
+                <div class="status-value">資優民主黨</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">境外防禦狀態</div>
+                <div class="status-value alert">卓越人民共和國條例生效中</div>
+            </div>
+        </div>
+
+        <!-- 歷史大事紀 -->
+        <section id="history">
+            <h2>建國歷史與大事紀</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>資優民主國 宣告成立</h3>
+                        <p>資優班全體人民正式對外宣告建國，確立民主憲政體制。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>全面落實內卷管制</h3>
+                        <p>為維護班級和諧與可持續發展，同日實施《資優班內卷特殊條例》。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>資優民主黨 創立</h3>
+                        <p>國內核心政黨正式組建，肩負全面防範與整頓內卷風氣之重任。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>實施特殊防禦條例</h3>
+                        <p>實施《卓越人民共和國特殊條例》，架設鋼鐵防線，杜絕共匪與不穩定外部勢力滲透。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>首屆直選總統誕生</h3>
+                        <p>完成歷史性總統直選，由「蘇泳旭」閣下獲得 8 票關鍵多數，高票當選首任國家元首。</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 憲法管制條例 -->
+        <section id="constitution">
+            <h2>中央最高法規</h2>
+            
+            <div class="law-box">
+                <div class="law-title">
+                    <h3>資優班 憲法內卷特殊條例</h3>
+                    <p>（官方全銜：資優民主國 憲法內卷管制特殊條例）</p>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第一條</div>
+                    <div class="article-text">本條例經資優民主國總統核准，並經資優班全體人民過半數之同意後，由總統明令公布實施；修正時亦同。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第二條【一級內卷罪】</div>
+                    <div class="article-text">
+                        國民自行內卷且學業操行表現傑出者，構成「一級內卷罪」，處三年以上十年以下有期徒刑，得併科新臺幣一千元以上五千元以下罰金。<br style="margin-bottom: 0.3rem;">
+                        前項之未遂犯，罰之。
+                    </div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第三條【二級內卷罪】</div>
+                    <div class="article-text">犯前條第一項之罪而情節輕微者，構成「二級內卷罪」，處三年以下有期徒刑，並強制執行八小時之外卷特殊輔導教育。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第四條【三級內卷罪】</div>
+                    <div class="article-text">國民自行內卷而未能取得傑出表現者，構成「三級內卷罪」，免處徒刑，惟須接受十二小時之外卷特殊輔導教育。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第五條</div>
+                    <div class="article-text">販賣內卷相關教材、資料，或引誘、唆使他人進行內卷行為者，依第三條「二級內卷罪」之規定處斷。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第六條</div>
+                    <div class="article-text">言行中提及、倡導或使用「提升實力」等相關詞彙者，視同進行內卷行為，依其情節分別適用本條例相關規定處罰之。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第七條【團體內卷罪】</div>
+                    <div class="article-text">三人以上共同意圖進行團體內卷者，構成「團體內卷罪」，其首謀及核心參與者處五年以下有期徒刑，且非經執行完畢，不得假釋。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第八條</div>
+                    <div class="article-text">
+                        行為人雖有內卷事實，但若具備下列各款條件之一者，免予追究其法律責任：
+                        <ul class="sub-list">
+                            <li>一、持有主管機關核發之合格內卷證明文件者。</li>
+                            <li>二、經合法執業醫師開立內卷處方箋者。</li>
+                            <li>三、經專業鑑定，其智能商數（IQ）低於八十者。</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 民國 115 年 資優民主國最高行政機關。請全體使用者自律，共同守護良性競爭環境。</p>
+    </footer>
+
+</body>
+</html>
