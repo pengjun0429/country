@@ -13,6 +13,7 @@
             --text-main: #f1f5f9;
             --text-muted: #94a3b8;
             --war-red: #ff3333;
+            --god-gold: #ffd700;
         }
 
         * {
@@ -30,7 +31,7 @@
                 radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(255, 0, 85, 0.07) 0%, transparent 40%);
             background-attachment: fixed;
-            padding-top: 120px; /* 預留給導覽列與宣戰公告 */
+            padding-top: 120px; 
         }
 
         /* 宣戰紅色警戒橫幅 */
@@ -64,7 +65,7 @@
             border-bottom: 1px solid rgba(0, 243, 255, 0.2);
             position: fixed;
             width: 100%;
-            top: 35px; /* 在宣戰橫幅下方 */
+            top: 35px; 
             z-index: 1000;
             transition: all 0.3s;
         }
@@ -76,7 +77,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
-            flex-wrap: wrap; /* 容許在小螢幕時自動換行 */
+            flex-wrap: wrap; 
             gap: 1rem;
         }
 
@@ -168,7 +169,7 @@
             box-shadow: 0 0 10px var(--primary);
         }
 
-        /* 即時狀態面板 - 平板無縫適配網格 */
+        /* 即時狀態面板 */
         .status-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -209,6 +210,77 @@
         .status-value.alert {
             color: var(--war-red);
             text-shadow: 0 0 10px rgba(255, 51, 51, 0.6);
+        }
+
+        /* 全新：政府職位架構樣式 */
+        .god-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 0, 0, 0.2));
+            border: 1px solid var(--god-gold) !important;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.15) !important;
+        }
+        
+        .gov-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .gov-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .gov-dept-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+            padding-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .gov-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .member-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .member-box:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.15);
+        }
+
+        .member-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .member-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .member-name.god {
+            color: var(--god-gold);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
         }
 
         /* 大事紀時間軸 */
@@ -482,13 +554,13 @@
             letter-spacing: 1px;
         }
 
-        /* 終極智慧型響應式 RWD 斷點，完全防止平板與手機文字擠壓 */
+        /* 終極智慧型響應式 RWD 斷點 */
         @media (max-width: 850px) {
             body {
                 padding-top: 150px;
             }
             header {
-                top: 55px; /* 留空間給多行橫幅 */
+                top: 55px; 
             }
             .navbar {
                 flex-direction: column;
@@ -534,6 +606,7 @@
         <nav class="navbar">
             <a href="#" class="brand">資優民主國</a>
             <ul class="nav-links">
+                <li><a href="#government">政府職位架構</a></li>
                 <li><a href="#history">建國大事紀</a></li>
                 <li><a href="#constitution">中央法規</a></li>
             </ul>
@@ -558,9 +631,86 @@
             </div>
             <div class="status-card war">
                 <div class="status-label">目前國防對外關係</div>
-                <div class="status-value alert">卓越人民共和國宣戰中</div>
+                <div class="status-value alert">對卓越人民共和國宣戰中</div>
             </div>
         </div>
+
+        <section id="government">
+            <h2>第一屆 中央政府首長名錄</h2>
+            <div class="gov-container">
+                
+                <div class="gov-card god-section">
+                    <div class="gov-dept-title" style="color: var(--god-gold); border-color: rgba(255,215,0,0.3);">✨ 國家精神與信仰最高核心</div>
+                    <div class="gov-grid">
+                        <div class="member-box" style="border-color: rgba(255,215,0,0.2);">
+                            <div class="member-role">Supreme Deity</div>
+                            <div class="member-name god">廖悅茹</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gov-card">
+                    <div class="gov-dept-title">🏛️ 總統府 (The Executive Mansion)</div>
+                    <div class="gov-grid">
+                        <div class="member-box">
+                            <div class="member-role">第一屆國家總統</div>
+                            <div class="member-name">蘇泳旭</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">國家副總統</div>
+                            <div class="member-name" style="color: var(--text-muted); font-size: 0.95rem; font-style: italic;">（從缺）</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gov-card">
+                    <div class="gov-dept-title">⚡ 憲政中央三院 (The Three Councils)</div>
+                    <div class="gov-grid">
+                        <div class="member-box">
+                            <div class="member-role">行政院院長</div>
+                            <div class="member-name">林庭蔚</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">立法院院長</div>
+                            <div class="member-name">李昀霏</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">司法院院長</div>
+                            <div class="member-name">廖悦茹</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gov-card">
+                    <div class="gov-dept-title">💼 行政院內閣部會 (The Cabinet)</div>
+                    <div class="gov-grid">
+                        <div class="member-box">
+                            <div class="member-role">內政部部長</div>
+                            <div class="member-name">陳裕騏</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">外交部部長</div>
+                            <div class="member-name">吳宇勛</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gov-card">
+                    <div class="gov-dept-title">👥 立法院最高民意代表 (Legislators)</div>
+                    <div class="gov-grid">
+                        <div class="member-box">
+                            <div class="member-role">最高立法委員</div>
+                            <div class="member-name">bobo</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">最高立法委員</div>
+                            <div class="member-name">陳芃均</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
 
         <section id="history">
             <h2>建國歷史與大事紀</h2>
@@ -655,7 +805,7 @@
 
                 <div class="law-article">
                     <div class="article-num">第六條</div>
-                    <div class="article-text">言行中提及、倡導或使用「提升實力」等相關詞彙者，視同進行內卷行為，依其情節分別適用本條例相關規定處罰之。</div>
+                    <div class="article-text">言行中提及、倡導或使用「提升實力」等相關词彙者，視同進行內卷行為，依其情節分別適用本條例相關規定處罰之。</div>
                 </div>
 
                 <div class="law-article">
