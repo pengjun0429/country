@@ -2,42 +2,931 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資優民主國官方網站 - Gifted Democracy</title>
     <style>
         :root {
             --primary: #00f3ff; 
+            --accent: #ff0055;  
             --bg-dark: #07090e; 
+            --card-bg: rgba(22, 32, 51, 0.45); 
             --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --war-red: #ff3333;
+            --god-gold: #ffd700;
         }
-        body { background: var(--bg-dark); color: var(--text-main); padding: 20px; font-family: sans-serif; }
-        .hero { text-align: center; margin-bottom: 30px; }
-        .hero h1 { color: var(--primary); font-size: 2.5rem; letter-spacing: 5px; }
-        .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .nav-btn { 
-            background: rgba(0, 243, 255, 0.1); border: 1px solid var(--primary); 
-            color: var(--primary); padding: 12px 25px; border-radius: 8px; 
-            cursor: pointer; text-decoration: none; font-weight: bold;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif, "Microsoft JhengHei";
         }
-        .nav-btn:hover { background: var(--primary); color: #000; }
-        .footer-note { margin-top: 50px; text-align: center; color: #555; font-size: 0.8rem; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 85, 0.07) 0%, transparent 40%);
+            background-attachment: fixed;
+            padding-top: 120px; 
+        }
+
+        /* 宣戰紅色警戒橫幅 */
+        .war-banner {
+            background: linear-gradient(90deg, #b30000, var(--war-red), #b30000);
+            color: #fff;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 15px rgba(255, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; text-shadow: 0 0 10px #fff; }
+            100% { opacity: 0.9; }
+        }
+
+        /* 導覽列：平滑滾動無擠壓設計 */
+        header {
+            background: rgba(7, 9, 14, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 35px; 
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            flex-wrap: wrap; 
+            gap: 1rem;
+        }
+
+        .brand {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+        }
+
+        /* 主視覺 */
+        .hero {
+            height: 35vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            letter-spacing: 5px;
+            background: linear-gradient(45deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px rgba(0,243,255,0.3));
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem 6rem 1.5rem;
+        }
+
+        section {
+            margin-bottom: 5rem;
+            scroll-margin-top: 160px;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            color: #ffffff;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* 即時狀態面板 */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .status-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-top: 2px solid rgba(0, 243, 255, 0.3);
+        }
+
+        .status-card.war {
+            border-top: 2px solid var(--war-red);
+            background: rgba(40, 15, 25, 0.45);
+        }
+
+        .status-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .status-value {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .status-value.alert {
+            color: var(--war-red);
+            text-shadow: 0 0 10px rgba(255, 51, 51, 0.6);
+        }
+
+        /* 政府職位架構專用樣式 */
+        .god-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 0, 0, 0.2));
+            border: 1px solid var(--god-gold) !important;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.15) !important;
+        }
+        
+        .gov-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .gov-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .gov-dept-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+            padding-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .gov-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .member-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .member-box:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.15);
+        }
+
+        .member-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .member-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .member-name.god {
+            color: var(--god-gold);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+        }
+
+        /* 大事紀時間軸 */
+        .timeline {
+            position: relative;
+            border-left: 2px solid rgba(0, 243, 255, 0.2);
+            padding-left: 2.5rem;
+            margin-left: 1rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: calc(-2.5rem - 7px);
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--bg-dark);
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 8px var(--primary);
+        }
+
+        .timeline-item.war-event::before {
+            border-color: var(--war-red);
+            box-shadow: 0 0 8px var(--war-red);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-item.war-event .timeline-date {
+            color: var(--war-red);
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 憲法與法規區塊 */
+        .law-box {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            margin-bottom: 3rem;
+        }
+
+        .law-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .law-title h3 {
+            font-size: 1.7rem;
+            color: #ffffff;
+            letter-spacing: 2px;
+            line-height: 1.4;
+        }
+
+        .law-title p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.6rem;
+        }
+
+        .law-article {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .law-article:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .article-num {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+        }
+
+        .article-text {
+            color: var(--text-main);
+            text-align: justify;
+            font-size: 1.05rem;
+        }
+
+        .sub-list {
+            list-style: none;
+            margin-top: 0.8rem;
+            padding-left: 1.5rem;
+        }
+
+        .sub-list li {
+            position: relative;
+            margin-bottom: 0.4rem;
+            color: var(--text-muted);
+        }
+
+        /* 檢舉系統區域 */
+        .report-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px dashed rgba(0, 243, 255, 0.2);
+        }
+
+        .btn-report {
+            background: linear-gradient(135deg, var(--accent), #b3003b);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .btn-report:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.7);
+        }
+
+        /* 天網自訂彈窗樣式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 6, 10, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: rgba(18, 25, 38, 0.8);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 35px rgba(0, 243, 255, 0.25);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 480px;
+            padding: 2.5rem;
+            transform: scale(0.92);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-card.alert-mode {
+            border-color: var(--accent);
+            box-shadow: 0 0 35px rgba(255, 0, 85, 0.3);
+        }
+
+        .modal-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .modal-card.alert-mode .modal-title {
+            color: var(--accent);
+        }
+
+        .modal-body {
+            margin-bottom: 2rem;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        .modal-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            margin-top: 0.6rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .modal-input:focus {
+            border-color: var(--primary);
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .btn-modal {
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-modal.confirm {
+            background: var(--primary);
+            color: #000;
+        }
+
+        .btn-modal.cancel {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-modal.close-alert {
+            background: var(--accent);
+            color: white;
+            width: 100%;
+        }
+
+        footer {
+            background-color: #040508;
+            text-align: center;
+            padding: 2.5rem;
+            color: #4b5563;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* RWD 響應式斷點優化 */
+        @media (max-width: 850px) {
+            body { padding-top: 150px; }
+            header { top: 55px; }
+            .navbar { flex-direction: column; gap: 0.8rem; padding: 0.8rem 1rem; }
+            .nav-links { gap: 1.5rem; justify-content: center; width: 100%; }
+            .hero h1 { font-size: 2.6rem; }
+            .law-box { padding: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.1rem; }
+            .nav-links { gap: 1rem; }
+            .nav-links a { font-size: 0.9rem; }
+            .law-box { padding: 1.25rem; }
+        }
     </style>
 </head>
 <body>
+
+    <div class="war-banner">
+        ⚠️ 國家緊急狀態：資優民主國已正式對「卓越人民共和國」宣戰，全體進入最高一級防禦防共狀態！
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="brand">資優民主國</a>
+            <ul class="nav-links">
+                <li><a href="#government">政府中央職位</a></li>
+                <li><a href="#history">建國大事紀</a></li>
+                <li><a href="#constitution">中央最高法規</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <div class="hero">
         <h1>資優民主國</h1>
         <p>戰時中央憲政與反內卷天網指揮系統</p>
     </div>
 
-    <div class="btn-container">
-        <a href="https://pengjun0429.github.io/country/government.html" class="nav-btn">🏛️ 政府職位架構</a>
-        <a href="https://pengjun0429.github.io/country/history.html" class="nav-btn">⏳ 建國大事紀</a>
-        <a href="https://pengjun0429.github.io/country/law.html" class="nav-btn">⚖️ 中央法規</a>
-        <a href="https://pengjun0429.github.io/country/report.html" class="nav-btn">⚠️ 內卷檢舉系統</a>
+    <div class="container">
+
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="status-label">首任民選總統</div>
+                <div class="status-value">蘇泳旭 (8票高票當選)</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">核心執政黨派</div>
+                <div class="status-value">資優民主黨</div>
+            </div>
+            <div class="status-card war">
+                <div class="status-label">目前國防對外關係</div>
+                <div class="status-value alert">對卓越人民共和國宣戰中</div>
+            </div>
+        </div>
+
+        <section id="government">
+            <h2>第一屆 中央政府首長名錄</h2>
+            <div class="gov-container">
+                
+                <div class="gov-card god-section">
+                    <div class="gov-dept-title" style="color: var(--god-gold); border-color: rgba(255,215,0,0.3);">✨ 國家精神與信仰最高核心</div>
+                    <div class="gov-grid">
+                        <div class="member-box" style="border-color: rgba(255,215,0,0.2);">
+                            <div class="member-role">Supreme Deity</div>
+                            <div class="member-name god">廖悅茹</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gov-card">
+                    <div class="gov-dept-title">🏛️ 總統府 (The Executive Mansion)</div>
+                    <div class="gov-grid">
+                        <div class="member-box">
+                            <div class="member-role">第一屆國家總統</div>
+                            <div class="member-name">蘇泳旭</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">國家副總統</div>
+                            <div class="member-name" style="color: var(--text-muted); font-size: 0.95rem; font-style: italic;">（從缺）</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gov-card">
+                    <div class="gov-dept-title">⚡ 憲政中央三院 (The Three Councils)</div>
+                    <div class="gov-grid">
+                        <div class="member-box">
+                            <div class="member-role">行政院院長</div>
+                            <div class="member-name">林庭蔚</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">立法院院長</div>
+                            <div class="member-name">李昀霏</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">司法院院長</div>
+                            <div class="member-name">廖悦茹</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gov-card">
+                    <div class="gov-dept-title">💼 行政院內閣部會 (The Cabinet)</div>
+                    <div class="gov-grid">
+                        <div class="member-box">
+                            <div class="member-role">內政部部長</div>
+                            <div class="member-name">陳裕騏</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">外交部部長</div>
+                            <div class="member-name">吳宇勛</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gov-card">
+                    <div class="gov-dept-title">👥 立法院最高民意代表 (Legislators)</div>
+                    <div class="gov-grid">
+                        <div class="member-box">
+                            <div class="member-role">最高立法委員</div>
+                            <div class="member-name">bobo</div>
+                        </div>
+                        <div class="member-box">
+                            <div class="member-role">最高立法委員</div>
+                            <div class="member-name">使用者</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="history">
+            <h2>建國歷史與大事紀</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>資優民主國 宣告成立</h3>
+                        <p>資優班全體人民正式奠定立國根基，宣告成立全新民主體制國家。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>實施內卷特殊管制</h3>
+                        <p>正式發布並實施《資優班內卷特殊條例》，全面嚴控班內不良內卷風氣。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>資優民主黨 創立</h3>
+                        <p>國內核心政黨「資優民主黨」正式組建，引領國家反內卷事業發展。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>實施防共特殊防禦條例</h3>
+                        <p>為防範外部共匪滲透，正式實施《卓越人民共和國特殊條例》，捍衛國家主權安全。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 28 日</div>
+                    <div class="timeline-content">
+                        <h3>首屆民選總統直選</h3>
+                        <p>開放歷史性總統直選，由候選人「蘇泳旭」以 8 票絕對優勢高票當選首任國家元首。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 29 日</div>
+                    <div class="timeline-content">
+                        <h3>大憲章開始制憲</h3>
+                        <p>國家正式步入「開始制憲」階段，逐步完善民主法治憲政框架。</p>
+                    </div>
+                </div>
+                <div class="timeline-item war-event">
+                    <div class="timeline-date">民國 115 年 5 月 29 日</div>
+                    <div class="timeline-content" style="border-left: 3px solid var(--war-red);">
+                        <h3>🔥 正式向「卓越人民共和國宣戰」</h3>
+                        <p>針對敵對外部勢力，資優民主國宣布全面進入戰時狀態，向卓越人民共和國正式宣戰。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">民國 115 年 5 月 29 日</div>
+                    <div class="timeline-content">
+                        <h3>憲法第一版製作完成</h3>
+                        <p>制憲大會正式通過國家大憲章總綱與條文，立憲根基大成。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="constitution">
+            <h2>中央最高法規</h2>
+            
+            <div class="law-box">
+                <div class="law-title">
+                    <h3>資優民主國 憲法總綱</h3>
+                    <p>中華民國 115 年 5 月 28 日資優民主國制憲大會通過</p>
+                </div>
+                <div class="law-article"><div class="article-num">第一條</div><div class="article-text">資優民主國基於資優班全體人民之共同意志，為一民主與中央集權兼具之特殊憲政政體。其主權屬於資優班全體人民。</div></div>
+                <div class="law-article"><div class="article-num">第二條</div><div class="article-text">資優民主國之領土，暫以資優班教室及其延伸之學習活動空間為統治權實施範圍。</div></div>
+                <div class="law-article"><div class="article-num">第三條</div><div class="article-text">本國於非常時期或建國初期，得實施一黨專政體制，由「資優民主黨」全面領導國家發展，以維護班級紀律與學習秩序。</div></div>
+                <div class="law-article"><div class="article-num">第四條</div><div class="article-text">資優民主國人民，無分性別、座位、智商或入學成績，在法律上一律平等。</div></div>
+                <div class="law-article"><div class="article-num">第五條</div><div class="article-text">人民之言論、講學、著作及出版自由應予保障。但其言論若涉及惡性內卷、破壞和諧或引發學業焦慮者，受特殊法律之限制。</div></div>
+            </div>
+
+            <div class="law-box" style="border-color: var(--primary);">
+                <div class="law-title">
+                    <h3>資優班 憲法內卷特殊條例</h3>
+                    <p>（又稱：資優民主國 憲法內卷管制特殊條例）</p>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第一條</div>
+                    <div class="article-text">本條例經資優民主國總統核准，並經資優班全體人民過半數之同意後，由總統明令公布實施；修正時亦同。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第二條（一級內卷罪）</div>
+                    <div class="article-text">
+                        國民自行內卷且學業操行表現傑出者，構成「一級內卷罪」，處三節以上十節以下有期徒刑，得併科新臺幣一千元以上五千元以下罰金。<br style="margin-bottom: 0.3rem;">
+                        前項之未遂犯，罰之。
+                    </div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第三條（二級內卷罪）</div>
+                    <div class="article-text">犯前條第一項之罪而情節輕微者，構成「二級內卷罪」，處三節以下有期徒刑，並強制執行十分鐘之外卷特殊輔導教育。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第四條（三級內卷罪）</div>
+                    <div class="article-text">國民自行內卷而未能取得傑出表現者，構成「三級內卷罪」，免處徒刑，惟須二十分之外卷特殊輔導教育。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第五條</div>
+                    <div class="article-text">販賣內卷相關教材、資料，或引誘、唆使他人進行內卷行為者，依第三條「二級內卷罪」之規定處斷。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第六條</div>
+                    <div class="article-text">言行中提及、倡導或使用「提升實力」等相關詞彙者，視同進行內卷行為，依其情節分別適用本條例相關規定處罰之。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第七條（團體內卷罪）</div>
+                    <div class="article-text">三人以上共同意圖進行團體內卷者，構成「團體內卷罪」，其首謀及核心參與者處五年以下有期徒刑，且非經執行完畢，不得假釋。</div>
+                </div>
+
+                <div class="law-article">
+                    <div class="article-num">第八條</div>
+                    <div class="article-text">
+                        行為人雖有內卷事實，但若具備下列各款條件之一者，免予追究其法律責任：
+                        <ul class="sub-list">
+                            <li>一、持有主管機關核發之合格內卷證明文件者。</li>
+                            <li>二、經合法執業醫師開立內卷處方箋者。</li>
+                            <li>三、經專業鑑定，其智能商數（IQ）低於八同者。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="report-section">
+                    <button class="btn-report" onclick="openStep1()">進入戰時內卷天網檢舉系統</button>
+                </div>
+            </div>
+
+            <div class="law-box" style="border-color: rgba(255,255,255,0.2);">
+                <div class="law-title">
+                    <h3>資優民主國 妨害風化管理處罰條例</h3>
+                    <p>內政部發布（字號：資民內字第115052901號）</p>
+                </div>
+                <div class="law-article"><div class="article-num">規範一</div><div class="article-text">嚴禁於大眾運輸、公園等公眾場所進行猥褻行為，亦不得強行散布或販賣猥褻物品。</div></div>
+                <div class="law-article"><div class="article-num">規範二</div><div class="article-text">凡涉及未滿十八歲國民之性影像散布、持有者，列為重罪，依法沒入設備並加處罰鍰。</div></div>
+            </div>
+
+        </section>
     </div>
 
-    <div class="footer-note">
-        <p>&copy; 民國 115 年 資優民主國政府戰時最高行政機關。</p>
+    <div class="modal-overlay" id="customModal">
+        <div class="modal-card" id="modalCard">
+            <div class="modal-title" id="modalTitle">【戰時內卷管制監控】</div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-buttons" id="modalButtons"></div>
+        </div>
     </div>
 
+    <footer>
+        <p>&copy; 民國 115 年 資優民主國政府戰時最高行政機關。請全體使用者恪守條例，嚴防敵特與內卷滲透。</p>
+    </footer>
+
+    <script>
+        const overlay = document.getElementById('customModal');
+        const card = document.getElementById('modalCard');
+        const title = document.getElementById('modalTitle');
+        const body = document.getElementById('modalBody');
+        const buttons = document.getElementById('modalButtons');
+
+        let tempSuspect = "";
+
+        function closeModal() {
+            overlay.classList.remove('active');
+        }
+
+        // 步驟一
+        function openStep1() {
+            card.classList.remove('alert-mode');
+            title.innerText = "🚨 戰時天網防衛系統：鎖定涉案人";
+            body.innerHTML = `
+                <p>請輸入在資優班涉嫌秘密看書、刷題或意圖內卷之國民姓名：</p>
+                <input type="text" id="suspectName" class="modal-input" placeholder="涉嫌內卷人姓名" autocomplete="off">
+            `;
+            buttons.innerHTML = `
+                <button class="btn-modal cancel" onclick="closeModal()">取消通報</button>
+                <button class="btn-modal confirm" onclick="submitStep1()">下一步 (事實蒐集)</button>
+            `;
+            overlay.classList.add('active');
+            setTimeout(() => document.getElementById('suspectName').focus(), 100);
+        }
+
+        function submitStep1() {
+            const val = document.getElementById('suspectName').value.trim();
+            if(!val) return;
+            tempSuspect = val;
+            openStep2();
+        }
+
+        // 步驟二
+        function openStep2() {
+            title.innerText = "⚖️ 戰時軍事法庭：具體犯罪事實";
+            body.innerHTML = `
+                <p>請輸入 <span style="color:var(--primary); font-weight:bold;">${tempSuspect}</span> 的內卷行徑（如：背單字、或說了違憲敏感詞）：</p>
+                <input type="text" id="crimeFact" class="modal-input" placeholder="請詳實輸入行為事實" autocomplete="off">
+            `;
+            buttons.innerHTML = `
+                <button class="btn-modal cancel" onclick="openStep1()">返回</button>
+                <button class="btn-modal confirm" onclick="submitStep2()">遞交判決</button>
+            `;
+            setTimeout(() => document.getElementById('crimeFact').focus(), 100);
+        }
+
+        function submitStep2() {
+            const fact = document.getElementById('crimeFact').value.trim();
+            if(!fact) return;
+
+            card.classList.add('alert-mode');
+            
+            if (fact.includes("提升實力")) {
+                title.innerText = "💥 嚴重國安與內卷違憲事件！";
+                body.innerHTML = `
+                    <p style="color:var(--accent); font-weight:bold; margin-bottom:0.5rem;">【依據第六條即刻處分】</p>
+                    <p>天網系統偵測到言行提及禁言詞彙<span style="color:var(--accent);">「提升實力」</span>！</p>
+                    <p style="margin-top:0.5rem;">涉案人 <span style="color:var(--primary);">${tempSuspect}</span> 與檢舉人已雙雙觸法。已自動移交憲兵隊，各處執行強制外卷特殊輔導教育！</p>
+                `;
+            } else {
+                title.innerText = "⚔️ 軍事最高檢察署已受理";
+                body.innerHTML = `
+                    <p>戰時內卷報告書已成功建檔！</p>
+                    <p style="margin-top:0.5rem;">行政法治機關刻正審查 <span style="color:var(--primary);">${tempSuspect}</span> 是否因此取得傑出表現。</p>
+                    <p style="margin-top:0.5rem; color:var(--text-muted); font-size:0.95rem;">若屬實，將直接依第二條「一級內卷罪」判處最高處以 <span style="color:var(--accent);">十節有期徒刑</span> 並科罰金。感謝使用者戰時依法配合。</p>
+                `;
+            }
+
+            buttons.innerHTML = `
+                <button class="btn-modal close-alert" onclick="closeModal()">重返防衛崗位</button>
+            `;
+        }
+    </script>
 </body>
 </html>
