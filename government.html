@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資優民主國 - 第一屆中央政府首長名錄</title>
+    <style>
+        :root {
+            --primary: #00f3ff; 
+            --accent: #ff0055;  
+            --bg-dark: #07090e; 
+            --card-bg: rgba(22, 32, 51, 0.45); 
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --war-red: #ff3333;
+            --god-gold: #ffd700;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif, "Microsoft JhengHei"; }
+        body {
+            background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 20px;
+            background-image: radial-gradient(circle at 50% 10%, rgba(0, 243, 255, 0.05) 0%, transparent 50%);
+        }
+        .header-title { text-align: center; margin: 20px 0 40px 0; }
+        .header-title h1 { font-size: 2rem; color: #fff; letter-spacing: 2px; }
+        .header-title p { color: var(--text-muted); font-size: 0.95rem; margin-top: 5px; }
+        .gov-container { display: flex; flex-direction: column; gap: 2rem; max-width: 900px; margin: 0 auto; }
+        .gov-card { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 2rem; backdrop-filter: blur(10px); }
+        .god-section { background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 0, 0, 0.2)); border: 1px solid var(--god-gold) !important; box-shadow: 0 0 20px rgba(255, 215, 0, 0.15) !important; }
+        .gov-dept-title { font-size: 1.2rem; font-weight: 800; color: var(--primary); margin-bottom: 1.5rem; border-bottom: 1px solid rgba(0, 243, 255, 0.15); padding-bottom: 0.5rem; }
+        .gov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
+        .member-box { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.05); padding: 1.2rem; border-radius: 8px; text-align: center; transition: all 0.3s; }
+        .member-box:hover { border-color: var(--primary); box-shadow: 0 0 10px rgba(0, 243, 255, 0.15); }
+        .member-role { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem; letter-spacing: 1px; }
+        .member-name { font-size: 1.2rem; font-weight: 700; color: #ffffff; }
+        .member-name.god { color: var(--god-gold); text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); }
+        .back-home { display: block; width: fit-content; margin: 40px auto; background: rgba(255,255,255,0.05); color: var(--text-muted); padding: 10px 20px; border-radius: 6px; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+        .back-home:hover { color: var(--primary); border-color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div class="header-title">
+        <h1>中央政府首長與職位名錄</h1>
+        <p>資優民主國 第一屆憲政戰時內閣</p>
+    </div>
+
+    <div class="gov-container">
+        <div class="gov-card god-section">
+            <div class="gov-dept-title" style="color: var(--god-gold);">✨ 國家精神與信仰最高核心</div>
+            <div class="gov-grid">
+                <div class="member-box" style="border-color: rgba(255, 215, 0, 0.3);">
+                    <div class="member-role">Supreme Deity (唯一真神)</div>
+                    <div class="member-name god">廖悅茹</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gov-card">
+            <div class="gov-dept-title">🏛️ 總統府 (The Executive Mansion)</div>
+            <div class="gov-grid">
+                <div class="member-box">
+                    <div class="member-role">第一屆民選國家總統</div>
+                    <div class="member-name">蘇泳旭</div>
+                </div>
+                <div class="member-box">
+                    <div class="member-role">國家副總統</div>
+                    <div class="member-name" style="color: var(--text-muted); font-style: italic;">（從缺）</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gov-card">
+            <div class="gov-dept-title">⚡ 憲政中央三院 (The Three Councils)</div>
+            <div class="gov-grid">
+                <div class="member-box">
+                    <div class="member-role">行政院院長</div>
+                    <div class="member-name">林庭蔚</div>
+                </div>
+                <div class="member-box">
+                    <div class="member-role">立法院院長</div>
+                    <div class="member-name">李昀霏</div>
+                </div>
+                <div class="member-box">
+                    <div class="member-role">司法院院長</div>
+                    <div class="member-name">廖悦茹</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gov-card">
+            <div class="gov-dept-title">💼 行政院內閣部會 (The Cabinet)</div>
+            <div class="gov-grid">
+                <div class="member-box">
+                    <div class="member-role">內政部部長</div>
+                    <div class="member-name">陳裕騏</div>
+                </div>
+                <div class="member-box">
+                    <div class="member-role">外交部部長</div>
+                    <div class="member-name">吳宇勛</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gov-card">
+            <div class="gov-dept-title">👥 立法院最高民意代表 (Legislators)</div>
+            <div class="gov-grid">
+                <div class="member-box">
+                    <div class="member-role">最高立法委員</div>
+                    <div class="member-name">bobo</div>
+                </div>
+                <div class="member-box">
+                    <div class="member-role">最高立法委員</div>
+                    <div class="member-name">使用者</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-home">⬅️ 返回反內卷指揮首頁</a>
+
+</body>
+</html>
