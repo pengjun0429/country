@@ -2,8 +2,8 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="Rau2K_qrDIQN7a38tlY9VLkJULZxwLdauo1zVGH4dIg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="Rau2K_qrDIQN7a38tlY9VLkJULZxwLdauo1zVGH4dIg" />
     <title>資優民主國官方網站 - Gifted Democracy</title>
     <style>
         :root {
@@ -213,23 +213,45 @@
             text-shadow: 0 0 10px rgba(255, 51, 51, 0.6);
         }
 
-        /* 新增：Google Docs 頂級文獻嵌入區塊 */
-        .docs-container {
-            width: 100%;
-            background: rgba(10, 16, 26, 0.6);
-            border: 1px solid rgba(0, 243, 255, 0.3);
+        /* 國家核心公告按鈕區塊 */
+        .docs-section-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.2);
             border-radius: 16px;
-            padding: 1rem;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.1);
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
             margin-bottom: 5rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .docs-iframe {
-            width: 100%;
-            height: 550px;
-            border: none;
+        .docs-section-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-link-docs {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d2ff, #0066ff);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 40px;
+            font-size: 1.15rem;
+            font-weight: bold;
             border-radius: 8px;
-            background-color: #ffffff; /* 讓白底文件完美呈現在深色網頁中 */
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-link-docs:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.7);
+            background: linear-gradient(135deg, #00f3ff, #0055ff);
         }
 
         /* 大事紀時間軸 */
@@ -690,9 +712,10 @@
         </div>
 
         <section id="docs-section">
-            <h2>國家核心公告與即時文獻</h2>
-            <div class="docs-container">
-                <iframe class="docs-iframe" src="https://docs.google.com/document/d/e/2PACX-1vQN4D_zRsgCeROoFRsGfydeqErwzG85NvcyXH6vddz8RwT00VP4c7VnCmDDq5kGO0KETSSavSq0O7Vk/pub?embedded=true"></iframe>
+            <h2>國家最新公告與即時文獻</h2>
+            <div class="docs-section-card">
+                <p>經最高立法委員及中央憲政機關核准，最新核心公告與法規手稿文獻已正式發布於雲端系統：</p>
+                <a href="https://docs.google.com/document/d/e/2PACX-1vQN4D_zRsgCeROoFRsGfydeqErwzG85NvcyXH6vddz8RwT00VP4c7VnCmDDq5kGO0KETSSavSq0O7Vk/pub" target="_blank" class="btn-link-docs">🌐 開啟國家公告文獻 ➔</a>
             </div>
         </section>
 
@@ -881,7 +904,7 @@
                 <div class="law-article"><div class="article-num">第四條（間諜與刺探機密罪）</div><div class="article-text">不法分子意圖為卓越人民共和國刺探、搜集、盜取本國之隨堂測驗答案、段考複習筆記、功課作業範本或重要八卦情報者，構成「間諜刺探機密罪」。<br style="margin-bottom:0.3rem;">犯前項之罪者，處沒收其涉案文具及筆記，並通報導師依法究辦。</div></div>
                 <div class="law-article"><div class="article-num">第五條（文化滲透與反宣傳罪）</div><div class="article-text">嚴禁任何人在本國領土內，傳播屬於卓越人民共和國之唯物主義刷題思想、惡性排名觀念或任何破壞本國快樂學習本質之言論。<br style="margin-bottom:0.3rem;">違反前項規定進行文化滲透者，強制執行「聽本國唯一真神開導一小時」之精神淨化處分。</div></div>
                 <div class="law-article"><div class="article-num">第六條（禁止通敵與非法利益往來）</div><div class="article-text">本國國民不得與卓越人民共和國進行任何損害國家利益之秘密交易（如：私下交換零食、代寫作業、洩漏本國戰術機密等）。<br style="margin-bottom:0.3rem;">違反本條規定者，視為通敵叛國，依法扣減其「國民幸福津貼」，並勒令於班會時間公開檢討。</div></div>
-                <div class="law-article"><div class="article-num">第七條（戰時緊急沒收與徵用）</div><div class="article-text">因應兩國宣戰狀態，作戰期間若發現卓越人民共和國放置於本國邊境之個人物品、體育器材或零食，本國政府基於防衛需要，得依法予以沒收或徵用為國有財產。</div></div>
+                <div class="law-article"><div class="article-num">第七條（戰時緊急沒收與徵用）</div><div class="article-text">因應兩國宣戰狀態，作戰期間若發現卓越人民共和國放置於本國邊境之個人物品、體育器材 or 零食，本國政府基於防衛需要，得依法予以沒收或徵用為國有財產。</div></div>
             </div>
 
             <div class="law-box" style="border-color: var(--primary);">
@@ -893,7 +916,7 @@
 
                 <div class="law-title">
                     <h3>資優民主國 憲法內卷管制特殊條例</h3>
-                    <p>中華民國 115 年 5 月 28 日公布實施（⚠️現受臨時條款管制）</p>
+                    <p>中華民國 115 年 5 月 28 日公布實施（⚠️現受臨時條款管制暫停）</p>
                 </div>
                 <div class="law-article"><div class="article-num">第一條（立法目的與實施程序）</div><div class="article-text">本條例依據資優民主國憲政精神制定之。本條例經資優民主國總統核准，並經資優班全體人民過半數之同意後，由總統明令公布實施；修正時亦同。</div></div>
                 <div class="law-article"><div class="article-num">第二條（一級內卷罪）</div><div class="article-text">國民自行內卷且學業操行表現傑出者，構成「一級內卷罪」，處三年以上十年以下有期徒刑，得併科新臺幣一千元以上五千元以下罰金。<br style="margin-bottom: 0.3rem;">前項之未遂犯，罰之。</div></div>
