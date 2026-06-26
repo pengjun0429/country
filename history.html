@@ -3,110 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>資優民主國 - 建國歷史大事紀</title>
+    <title>建國大事紀 - 資優民主國</title>
     <style>
-        :root {
-            --primary: #00f3ff; 
-            --accent: #ff0055;  
-            --bg-dark: #07090e; 
-            --card-bg: rgba(22, 32, 51, 0.45); 
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --war-red: #ff3333;
-        }
+        :root { --primary: #00f3ff; --bg-dark: #07090e; --card-bg: rgba(22, 32, 51, 0.45); --text-main: #f1f5f9; --text-muted: #94a3b8; --war-red: #ff3333; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif, "Microsoft JhengHei"; }
-        body {
-            background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding: 20px;
-            background-image: radial-gradient(circle at 10% 30%, rgba(255, 0, 85, 0.04) 0%, transparent 50%);
-        }
-        .header-title { text-align: center; margin: 20px 0 40px 0; }
-        .header-title h1 { font-size: 2rem; color: #fff; letter-spacing: 2px; }
-        .container { max-width: 800px; margin: 0 auto; padding: 0 10px; }
-        .timeline { position: relative; border-left: 2px solid rgba(0, 243, 255, 0.2); padding-left: 2rem; margin-left: 1rem; }
-        .timeline-item { position: relative; margin-bottom: 2.5rem; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: calc(-2rem - 7px); top: 8px;
-            width: 12px; height: 12px; border-radius: 50%; background-color: var(--bg-dark);
-            border: 3px solid var(--primary); box-shadow: 0 0 8px var(--primary);
-        }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; padding-top: 120px; background-image: radial-gradient(circle at 50% 30%, rgba(0, 243, 255, 0.04) 0%, transparent 50%); background-attachment: fixed; }
+        header { background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 243, 255, 0.2); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .navbar { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+        .brand { font-size: 1.6rem; font-weight: 800; color: var(--primary); text-decoration: none; letter-spacing: 3px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 1rem; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); text-shadow: 0 0 8px rgba(0, 243, 255, 0.6); }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 6rem 1.5rem; }
+        h2 { font-size: 2rem; color: #ffffff; margin-bottom: 3rem; display: flex; align-items: center; gap: 12px; }
+        h2::before { content: ''; display: inline-block; width: 4px; height: 24px; background: var(--primary); box-shadow: 0 0 10px var(--primary); }
+        
+        .timeline { position: relative; border-left: 2px solid rgba(0, 243, 255, 0.2); padding-left: 2.5rem; margin-left: 1rem; }
+        .timeline-item { position: relative; margin-bottom: 3rem; }
+        .timeline-item::before { content: ''; position: absolute; left: calc(-2.5rem - 7px); top: 8px; width: 12px; height: 12px; border-radius: 50%; background-color: var(--bg-dark); border: 3px solid var(--primary); box-shadow: 0 0 8px var(--primary); }
         .timeline-item.war-event::before { border-color: var(--war-red); box-shadow: 0 0 8px var(--war-red); }
-        .timeline-date { font-weight: 700; color: var(--primary); margin-bottom: 0.4rem; font-size: 1.05rem; }
+        .timeline-date { font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem; }
         .timeline-item.war-event .timeline-date { color: var(--war-red); }
-        .timeline-content { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.04); padding: 1.2rem 1.5rem; border-radius: 10px; }
-        .timeline-content h3 { font-size: 1.2rem; color: #ffffff; margin-bottom: 0.4rem; }
-        .timeline-content p { font-size: 0.95rem; color: var(--text-muted); }
-        .back-home { display: block; width: fit-content; margin: 40px auto; background: rgba(255,255,255,0.05); color: var(--text-muted); padding: 10px 20px; border-radius: 6px; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
-        .back-home:hover { color: var(--primary); border-color: var(--primary); }
+        .timeline-content { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.04); padding: 1.5rem 2rem; border-radius: 12px; backdrop-filter: blur(5px); }
+        .timeline-content h3 { font-size: 1.25rem; color: #ffffff; margin-bottom: 0.5rem; }
+        .timeline-content p { color: var(--text-muted); }
+        footer { text-align: center; padding: 2.5rem; color: #4b5563; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.9rem; }
+        @media (max-width: 850px) { body { padding-top: 150px; } .navbar { flex-direction: column; gap: 0.8rem; } .nav-links { gap: 1.5rem; } }
     </style>
 </head>
 <body>
-
-    <div class="header-title">
-        <h1>建國歷史與革命大事紀</h1>
-    </div>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="brand">資優民主國</a>
+            <ul class="nav-links">
+                <li><a href="index.html">國家首頁</a></li>
+                <li><a href="history.html" class="active">建國大事紀</a></li>
+                <li><a href="government.html">政府中央職位</a></li>
+                <li><a href="law.html">中央最高法規</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <div class="container">
+        <h2>建國歷史與大事紀</h2>
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-date">民國 115 年 5 月 28 日</div>
                 <div class="timeline-content">
-                    <h3>資優民主國 正式宣告成立</h3>
-                    <p>凝聚資優班全體人民之共同意志，正式奠定立國根基，推翻舊體制。</p>
+                    <h3>資優民主國 宣告成立</h3>
+                    <p>全體人民正式奠定立國根基，宣告成立全新民主體制國家。</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">民國 115 年 5 月 28 日</div>
                 <div class="timeline-content">
-                    <h3>實施《內卷管制特殊條例》</h3>
-                    <p>為防範惡性學習與學業焦慮，全面落實反內卷管制政策。</p>
+                    <h3>實施內卷特殊管制</h3>
+                    <p>正式發布並實施《資優民主國內卷特殊條例》，全面嚴控不良內卷風氣。</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">民國 115 年 5 月 28 日</div>
                 <div class="timeline-content">
-                    <h3>「資優民主黨」創立</h3>
-                    <p>建國核心政黨成立，於非常時期全面領導國家發展，維護紀律。</p>
+                    <h3>資優民主黨 創立</h3>
+                    <p>國內核心政黨「資優民主黨」正式組建，引領國家反內卷事業發展。</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">民國 115 年 5 月 28 日</div>
                 <div class="timeline-content">
-                    <h3>實施《卓越人民共和國特殊條例》</h3>
-                    <p>特殊國防法令發布，嚴密防範外部共匪滲透與顛覆活動。</p>
+                    <h3>實施防共特殊防禦條例</h3>
+                    <p>為防範外部滲透，正式實施《卓越人民共和國特殊條例》，捍衛國家主權安全。</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">民國 115 年 5 月 28 日</div>
                 <div class="timeline-content">
-                    <h3>首屆民選總統大選</h3>
-                    <p>開放歷史性直選，由候選人「蘇泳旭」以 8 票絕對優勢成功當選首任總統。</p>
+                    <h3>首屆民選總統直選</h3>
+                    <p>開放歷史性總統直選，由候選人「蘇◯旭」以 8 票絕對優勢當選首任國家元首。</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">民國 115 年 5 月 29 日</div>
                 <div class="timeline-content">
-                    <h3>制憲大會啟動</h3>
-                    <p>國家憲政推進，大憲章開始制憲，完善民主與集權兼具之憲政框架。</p>
+                    <h3>大憲章開始制憲</h3>
+                    <p>國家正式步入「開始制憲」階段，逐步完善民主法治憲政框架。</p>
                 </div>
             </div>
             <div class="timeline-item war-event">
                 <div class="timeline-date">民國 115 年 5 月 29 日</div>
                 <div class="timeline-content" style="border-left: 3px solid var(--war-red);">
-                    <h3>🔥 正式向「卓越人民共和國」宣戰</h3>
-                    <p>總統依法行使職權發布宣戰布告，全國即刻進入一級戰時狀態，捍衛主權。</p>
+                    <h3>🔥 正式向「卓越人民共和國宣戰」</h3>
+                    <p>針對敵對外部勢力，資優民主國宣布全面進入戰時狀態，向卓越人民共和國正式宣戰。</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">民國 115 年 5 月 29 日</div>
                 <div class="timeline-content">
-                    <h3>憲法第一版 製作完成</h3>
+                    <h3>憲法第一版製作完成</h3>
                     <p>制憲大會正式通過國家大憲章總綱與條文，立憲根基大成。</p>
+                </div>
+            </div>
+            <div class="timeline-item war-event">
+                <div class="timeline-date">民國 115 年 5 月 30 日</div>
+                <div class="timeline-content" style="border-left: 3px solid var(--war-red);">
+                    <h3>🛡️ 執行「對外戰亂臨時條款」</h3>
+                    <p>為因應當前作戰狀態，國家發布戰時動員，部分法令及內卷特殊條例暫時停止適用。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">民國 115 年 5 月 31 日</div>
+                <div class="timeline-content">
+                    <h3>⚖️ 新增「憲法 不溯及既往原則」</h3>
+                    <p>制憲大會決議通過憲法修正案，正式將法治國家核心之「不溯及既往原則」寫入根本大法。</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <a href="index.html" class="back-home">⬅️ 返回反內卷指揮首頁</a>
-
+    <footer>
+        <p>&copy; 民國 115 年 資優民主國政府。請全體使用者恪守條例，嚴防敵特與內卷滲透。</p>
+    </footer>
 </body>
 </html>
